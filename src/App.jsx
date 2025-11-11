@@ -52,7 +52,7 @@ const startRecording = async () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "reaction-video.webm"; 
+      a.download = "your-smile-cute.webm"; 
       a.click();
       URL.revokeObjectURL(url);
 
