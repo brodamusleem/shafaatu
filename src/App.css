@@ -1,0 +1,20 @@
+@keyframes heartFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(50vh) rotate(15deg); }
+  100% { transform: translateY(100vh) rotate(30deg); opacity: 0; }
+}
+
+@keyframes sparkFall {
+  0% { transform: translateY(0) scale(0.5); opacity: 1; }
+  50% { transform: translateY(50vh) scale(1); opacity: 0.7; }
+  100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+}
+
+.animate-heartFall {
+  animation-fill-mode: forwards;
+}
+
+.animate-sparkFall {
+  animation-fill-mode: forwards;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ffd700;
+}
