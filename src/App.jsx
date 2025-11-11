@@ -31,28 +31,41 @@ function App() {
     { text: "FINAL_PAGE", image: "" },
   ];
 
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-      videoRef.current.srcObject = stream;
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
-      mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size > 0) recordedChunks.current.push(event.data);
-      };
-      mediaRecorder.onstop = async () => {
-        const blob = new Blob(recordedChunks.current, { type: "video/webm" });
-     const url = URL.createObjectURL(blob); 
-const a = document.createElement("a"); 
-a.href = url; a.download = "her-smile.webm";
- a.click(); recordedChunks.current = []; 
+const startRecording = async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true,
+    });
+
+    videoRef.current.srcObject = stream;
+
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
+
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) recordedChunks.current.push(event.data);
+    };
+
+    mediaRecorder.onstop = async () => {
+      const blob = new Blob(recordedChunks.current, { type: "video/webm" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "reaction-video.webm"; 
+      a.click();
+      URL.revokeObjectURL(url);
+
+      recordedChunks.current = [];
+    };
+
+    mediaRecorder.start();
+  } catch (err) {
+    console.error("Camera access denied ", err);
+    alert("Please allow camera access to record your beautiful smile 😊");
+  }
 };
-      mediaRecorder.start();
-    } catch (err) {
-      console.error("Camera access denied ", err);
-      alert("Please allow camera access to record your beautiful smile ");
-    }
-  };
+
 
   const stopRecording = () => {
     if (mediaRecorderRef.current) {
