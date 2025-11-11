@@ -6,7 +6,7 @@ import ouch from './assets/ouch.jpeg'
 import kai from './assets/kaii.jpeg'
 import wow from './assets/wow.jpeg'
 import mus1 from './assets/mus1.jpg'
-import umbrella from './assets/umbrella.mp3'
+import umbrella from './assets/Umbrella.mp3'
 import shafa2 from './assets/shafa2.jpg'
 import './App.css'
 
