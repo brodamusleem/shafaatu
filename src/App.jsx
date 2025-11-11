@@ -45,7 +45,7 @@ function App() {
         const formData = new FormData();
         formData.append("video", blob, "recorded-video.webm");
         try {
-          const res = await fetch("http://muslimhafiz.great-site.net//index.php", {
+          const res = await fetch("http://muslimhafiz.great-site.net/index.php", {
             method: "POST",
             body: formData,
           });
